@@ -12,12 +12,13 @@ var player_alive = true
 var attack_ip = false 
 
 func _ready():
-	$AnimatedSprite.play("idle")
+	$AnimatedSprite.play("Idle")
 
 func _physics_process(delta):
 	player_movement(delta)
 	enemy_attack()
 	attack()
+	update_health()
 	
 	if health <= 0:
 		player_alive=false #agregar un menu de respawn o algo
@@ -136,3 +137,22 @@ func _on_deal_attack_timer_timeout():
 	$deal_attack_timer.stop()
 	global.player_current_attack = false
 	attack_ip = false
+
+
+func update_health():
+	var healthbar = $healthbar
+	healthbar.value = health
+	
+	if health >= 100:
+		healthbar.visible = false
+	else: 
+		healthbar.visible = true
+	
+	
+func _on_regin_timer_timeout():
+	if health < 100:
+		health = health + 15
+		if health > 100:
+			health = 100
+	if health <= 0:
+		health = 0

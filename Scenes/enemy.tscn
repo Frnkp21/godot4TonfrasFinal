@@ -1,28 +1,56 @@
-[gd_scene load_steps=10 format=3 uid="uid://dppkaro83hemm"]
+[gd_scene load_steps=15 format=3 uid="uid://dppkaro83hemm"]
 
-[ext_resource type="Texture2D" uid="uid://umyy46fxu7qr" path="res://Assets/Enemies/mons1-sheet.png" id="1_e2umf"]
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="2_pa0oh"]
+[ext_resource type="Texture2D" uid="uid://0fjnw5njdfof" path="res://Assets/Enemies/monsterWalk.png" id="2_uo5kj"]
+[ext_resource type="Texture2D" uid="uid://kfy4doqwqmrb" path="res://Assets/Enemies/monsterAttack.png" id="3_hff2f"]
+[ext_resource type="Texture2D" uid="uid://umyy46fxu7qr" path="res://Assets/Enemies/monsterIdle.png" id="4_2ykw8"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r1gwn"]
-atlas = ExtResource("1_e2umf")
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4teb"]
+atlas = ExtResource("2_uo5kj")
 region = Rect2(0, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_jpsnq"]
+atlas = ExtResource("2_uo5kj")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2stkt"]
+atlas = ExtResource("3_hff2f")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqbog"]
+atlas = ExtResource("3_hff2f")
+region = Rect2(32, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_gqn8w"]
-atlas = ExtResource("1_e2umf")
+atlas = ExtResource("4_2ykw8")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yej6j"]
-atlas = ExtResource("1_e2umf")
+atlas = ExtResource("4_2ykw8")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hbxmn"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_r1gwn")
+"texture": SubResource("AtlasTexture_p4teb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpsnq")
 }],
 "loop": true,
 "name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2stkt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqbog")
+}],
+"loop": true,
+"name": &"MonsterAttack",
 "speed": 5.0
 }, {
 "frames": [{
@@ -44,7 +72,7 @@ size = Vector2(27, 19)
 radius = 84.006
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_26moh"]
-radius = 21.0238
+radius = 31.0
 
 [node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("2_pa0oh")
@@ -71,6 +99,15 @@ shape = SubResource("CircleShape2D_26moh")
 
 [node name="take_damage_cooldown" type="Timer" parent="."]
 wait_time = 0.5
+
+[node name="healthbar" type="ProgressBar" parent="."]
+modulate = Color(1, 0, 0, 1)
+offset_left = -10.0
+offset_top = 11.0
+offset_right = 190.0
+offset_bottom = 38.0
+scale = Vector2(0.1, 0.1)
+show_percentage = false
 
 [connection signal="body_entered" from="detecting_area" to="." method="_on_detecting_area_body_entered"]
 [connection signal="body_exited" from="detecting_area" to="." method="_on_detecting_area_body_exited"]

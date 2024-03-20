@@ -310,7 +310,7 @@ animations = [{
 size = Vector2(18.1071, 12.7273)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cp0a5"]
-radius = 21.0
+radius = 16.1245
 
 [node name="player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 3
@@ -327,7 +327,7 @@ scale = Vector2(0.717949, -1.57143)
 shape = SubResource("1")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
+zoom = Vector2(1.5, 1.5)
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 
@@ -341,7 +341,21 @@ shape = SubResource("CircleShape2D_cp0a5")
 [node name="deal_attack_timer" type="Timer" parent="."]
 wait_time = 0.5
 
+[node name="healthbar" type="ProgressBar" parent="."]
+modulate = Color(0, 0.964706, 0.129412, 1)
+offset_left = -7.0
+offset_top = 12.0
+offset_right = 133.0
+offset_bottom = 39.0
+scale = Vector2(0.1, 0.1)
+show_percentage = false
+
+[node name="regin_timer" type="Timer" parent="."]
+wait_time = 15.0
+autostart = true
+
 [connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="player_hitbox" to="." method="_on_player_hitbox_body_exited"]
 [connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="deal_attack_timer" to="." method="_on_deal_attack_timer_timeout"]
+[connection signal="timeout" from="regin_timer" to="." method="_on_regin_timer_timeout"]

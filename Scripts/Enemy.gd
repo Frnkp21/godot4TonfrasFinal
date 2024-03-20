@@ -12,10 +12,13 @@ var can_take_damage = true
 
 func _physics_process(delta):
 	deal_with_damage()
+	update_health()
 	
 	if player_chase:
 		position += (player.position - position)/speed
 		
+		$AnimatedSprite2D.play("Idle")
+	else:
 		$AnimatedSprite2D.play("Walk")
 		move_and_collide(Vector2(0,0))
 
@@ -36,6 +39,7 @@ func enemy():
 func _on_enemy_hitbox_body_entered(body):
 	if body.has_method("player"):
 		player_inattack_zone = true
+		
 
 
 func _on_enemy_hitbox_body_exited(body):
@@ -55,3 +59,19 @@ func deal_with_damage():
 
 func _on_take_damage_cooldown_timeout():
 	can_take_damage = true
+
+
+func update_health():
+	var healthbar = $healthbar
+
+	healthbar.value = health
+	if health >= 100:
+		healthbar.visible = false
+	else:
+		healthbar.visible = true
+		
+func _on_AnimatedSprite2D_animation_finished(animation):
+	if animation == "Idle":
+		$AnimatedSprite2D.play("Attack")
+	elif animation == "Attack":
+		$AnimatedSprite2D.play("Idle")
