@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://tilemaps/bedroomtile.tres" type="TileSet" id=1]
+[ext_resource path="res://tilemaps/BedRoomDeco.tres" type="TileSet" id=2]
+[ext_resource path="res://blackBack.jpg" type="Texture2D" id=3]
+[ext_resource path="res://Scenes/MoveScene.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=5]
+
+[node name="Parentsroom" type="Node2D"]
+position = Vector2( 126, 122 )
+
+[node name="BlackBack" type="Sprite2D" parent="."]
+scale = Vector2( 3, 3 )
+texture = ExtResource( 3 )
+
+[node name="Background" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+format = 1
+tile_data = PackedInt32Array( -131069, 12, 0, -131068, 12, 0, -131067, 12, 0, -131066, 12, 0, -131065, 12, 0, -131064, 12, 0, -131063, 12, 0, -131062, 12, 0, -65533, 12, 0, -65532, 4, 0, -65531, 4, 0, -65530, 4, 0, -65529, 4, 0, -65528, 4, 0, -65527, 4, 0, -65526, 12, 0, 3, 12, 0, 4, 6, 0, 5, 6, 0, 6, 6, 0, 7, 6, 0, 8, 6, 0, 9, 6, 0, 10, 12, 0, 65539, 12, 0, 65540, 5, 0, 65541, 5, 0, 65542, 5, 0, 65543, 5, 0, 65544, 5, 0, 65545, 5, 0, 65546, 12, 0, 131075, 12, 0, 131076, 5, 0, 131077, 5, 0, 131078, 5, 0, 131079, 5, 0, 131080, 5, 0, 131081, 5, 0, 131082, 12, 0, 196611, 12, 0, 196612, 5, 0, 196613, 5, 0, 196614, 5, 0, 196615, 5, 0, 196616, 17, 0, 196617, 16, 0, 196618, 12, 0, 262147, 12, 0, 262148, 12, 0, 262149, 12, 0, 262150, 12, 0, 262151, 12, 0, 262152, 12, 0, 262153, 12, 0, 262154, 12, 0 )
+
+[node name="Deco" type="TileMap" parent="."]
+position = Vector2( 0, -17 )
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+show_collision = true
+format = 1
+tile_data = PackedInt32Array( 8, 0, 0, 9, 1, 0, 65540, 15, 0, 65541, 11, 0, 65542, 12, 0, 65543, 15, 0, 65544, 2, 0, 65545, 3, 0, 131077, 13, 0, 131078, 14, 0 )
+
+[node name="player" parent="." instance=ExtResource( 5 )]
+position = Vector2( 287, 110 )
+
+[node name="MoveScene2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 287, 124 )
+escena = "Hallway"
