@@ -69,9 +69,4 @@ func update_health():
 		healthbar.visible = false
 	else:
 		healthbar.visible = true
-		
-func _on_AnimatedSprite2D_animation_finished(animation):
-	if animation == "Idle":
-		$AnimatedSprite2D.play("Attack")
-	elif animation == "Attack":
-		$AnimatedSprite2D.play("Idle")
+
