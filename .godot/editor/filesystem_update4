@@ -2,6 +2,7 @@ res://tilemaps/default_env.tres
 res://Scenes/BedRoom.tscn
 res://Scenes/Player.tscn
 res://Scenes/enemy.tscn
-res://Scripts/Player.gd
-res://Scripts/Enemy.gd
 res://Scenes/Street.tscn
+res://Scripts/Enemy.gd
+res://Scripts/Player.gd
+res://Scripts/global.gd

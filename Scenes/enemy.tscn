@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dppkaro83hemm"]
+[gd_scene load_steps=10 format=3 uid="uid://dppkaro83hemm"]
 
 [ext_resource type="Texture2D" uid="uid://umyy46fxu7qr" path="res://Assets/Enemies/mons1-sheet.png" id="1_e2umf"]
 [ext_resource type="Script" path="res://Scripts/Enemy.gd" id="2_pa0oh"]
@@ -43,10 +43,13 @@ size = Vector2(27, 19)
 [sub_resource type="CircleShape2D" id="CircleShape2D_jeall"]
 radius = 84.006
 
-[node name="Enemy" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_26moh"]
+radius = 21.0238
+
+[node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 script = ExtResource("2_pa0oh")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["enemy"]]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_hbxmn")
 animation = &"Idle"
 
@@ -61,5 +64,16 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detecting_area"]
 shape = SubResource("CircleShape2D_jeall")
 
+[node name="enemy_hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemy_hitbox"]
+shape = SubResource("CircleShape2D_26moh")
+
+[node name="take_damage_cooldown" type="Timer" parent="."]
+wait_time = 0.5
+
 [connection signal="body_entered" from="detecting_area" to="." method="_on_detecting_area_body_entered"]
 [connection signal="body_exited" from="detecting_area" to="." method="_on_detecting_area_body_exited"]
+[connection signal="body_entered" from="enemy_hitbox" to="." method="_on_enemy_hitbox_body_entered"]
+[connection signal="body_exited" from="enemy_hitbox" to="." method="_on_enemy_hitbox_body_exited"]
+[connection signal="timeout" from="take_damage_cooldown" to="." method="_on_take_damage_cooldown_timeout"]

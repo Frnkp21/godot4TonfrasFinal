@@ -1,79 +1,138 @@
 extends CharacterBody2D
 
-@export var move_speed: float = 100  # Velocidad de movimiento en píxeles por segundo
-@export var attack_speed: float = 100  # Velocidad de ataque en píxeles por segundo
+const speed = 100
+var current_dir ="none"
 
 
-var is_attacking: bool = false  # Variable booleana que indica si se está atacando o no
-var attack_direction: Vector2 = Vector2.ZERO  # Dirección del ataque
+var enemy_inattack_range = false
+var enemy_attack_cooldown = true
+var health = 100
+var player_alive = true
 
-func _physics_process(delta: float) -> void:
-	var motion: Vector2 = Vector2.ZERO
+var attack_ip = false 
 
+func _ready():
+	$AnimatedSprite.play("idle")
+
+func _physics_process(delta):
+	player_movement(delta)
+	enemy_attack()
+	attack()
+	
+	if health <= 0:
+		player_alive=false #agregar un menu de respawn o algo
+		health = 0
+		print("player has been killed")
+		self.queue_free()
+
+func player_movement(delta):
+	
 	if Input.is_action_pressed("move_right"):
-		motion.x += 1
+		current_dir = "right"
+		play_anim(1)
+		velocity.x = speed
+		velocity.y = 0
 	elif Input.is_action_pressed("move_left"):
-		motion.x -= 1
-
-	if Input.is_action_pressed("move_down"):
-		motion.y += 1
+		current_dir = "left"
+		play_anim(1)
+		velocity.x = -speed
+		velocity.y = 0
+	elif Input.is_action_pressed("move_down"):
+		current_dir = "down"
+		play_anim(1)
+		velocity.y = speed
+		velocity.x = 0
 	elif Input.is_action_pressed("move_up"):
-		motion.y -= 1
-
-	motion = motion.normalized() * move_speed * delta
-	move_and_collide(motion)
-
-
-	# Determinar la animación a reproducir según la dirección del movimiento
-	if motion != Vector2.ZERO:
-		if abs(motion.x) > abs(motion.y):
-			if motion.x > 0:
-				# Movimiento hacia la derecha
-				$AnimatedSprite.play("Walk_Right")
-			else:
-				# Movimiento hacia la izquierda
-				$AnimatedSprite.play("Walk_Left")
-		else:
-			if motion.y > 0:
-				# Movimiento hacia abajo
-				$AnimatedSprite.play("Walk_Down")
-			else:
-				# Movimiento hacia arriba
-				$AnimatedSprite.play("Walk_Up")
+		current_dir = "up"
+		play_anim(1)
+		velocity.y = -speed
+		velocity.x = 0
 	else:
-		# Si no se está moviendo, reproducir la animación de Idle
-		$AnimatedSprite.play("Idle")
+		play_anim(0)
+		velocity.x = 0
+		velocity.y = 0
+		
+	move_and_slide()
 
-# Si se está atacando, determinar la dirección del ataque
-	if is_attacking:
-		if abs(motion.x) > abs(motion.y):
-			if motion.x > 0:
-				attack_direction = Vector2.RIGHT
-			else:
-				attack_direction = Vector2.LEFT
-		else:
-			if motion.y > 0:
-				attack_direction = Vector2.DOWN
-			else:
-				attack_direction = Vector2.UP
 
-	# Si se soltó el botón de ataque, finalizar el ataque
-	if Input.is_action_just_released("attack"):
-		print("hola")
-		is_attacking = false
+func play_anim(movement):
+	var dir = current_dir
+	var anim = $AnimatedSprite
+	
+	if dir == "right":
+		anim.flip_h = false
+		if movement == 1:
+			anim.play("Walk_Right")
+		elif movement == 0:
+			if attack_ip == false:
+				anim.play("Right_Idle")
+	if dir == "left":
+		anim.flip_h = false
+		if movement == 1:
+			anim.play("Walk_Left")
+		elif movement == 0:
+			if attack_ip == false:
+				anim.play("Left_Idle")
+	if dir == "up":
+		anim.flip_h = false
+		if movement == 1:
+			anim.play("Walk_Up")
+		elif movement == 0:
+			if attack_ip == false:
+				anim.play("Up_Idle")
+	if dir == "down":
+		anim.flip_h = false
+		if movement == 1:
+			anim.play("Walk_Down")
+		elif movement == 0:
+			if attack_ip == false:
+				anim.play("Down_Idle")
 
-	# Si se está atacando, reproducir la animación de ataque
-	if is_attacking:
-		$AnimatedSprite.play("Attack")
 
-	# Realizar el ataque después de un breve delay
-	if is_attacking and $AnimatedSprite.frame >= $AnimatedSprite.frame_range.end:
-		attack(attack_direction)
-		is_attacking = false
-
-func attack(attack_direction: Vector2) -> void:
-	# Aquí puedes implementar el comportamiento de ataque
+func player():
 	pass
-func _on_Area2D_body_entered(body: Node) -> void:
-	# Aquí puedes manejar las colisiones con otros objetos
-	pass
+
+func _on_player_hitbox_body_entered(body):
+	if body.has_method("enemy"):
+		enemy_inattack_range = true
+
+
+func _on_player_hitbox_body_exited(body):
+	if body.has_method("enemy"):
+		enemy_inattack_range = false
+		
+func enemy_attack():
+	if enemy_inattack_range and enemy_attack_cooldown == true:
+		health = health - 10
+		enemy_attack_cooldown = false
+		$attack_cooldown.start()
+		print(health)
+
+func _on_attack_cooldown_timeout():
+	enemy_attack_cooldown = true
+	
+	
+func attack():
+	var dir = current_dir
+	if Input.is_action_just_pressed("attack"):
+		global.player_current_attack = true
+		attack_ip = true
+		if dir == "right":
+			$AnimatedSprite.play("Attack_Right")
+			$deal_attack_timer.start()
+		if dir == "left":
+			$AnimatedSprite.play("Attack_Left")
+			$deal_attack_timer.start()
+		if dir == "down":
+			$AnimatedSprite.play("Attack_Down")
+			$deal_attack_timer.start()
+		if dir == "up":
+			$AnimatedSprite.play("Attack_Up")
+			$deal_attack_timer.start()
+		
+
+
+func _on_deal_attack_timer_timeout():
+	$deal_attack_timer.stop()
+	global.player_current_attack = false
+	attack_ip = false

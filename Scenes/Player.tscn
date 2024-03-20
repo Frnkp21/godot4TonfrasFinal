@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://deqiv7y1s5d6y"]
+[gd_scene load_steps=43 format=3 uid="uid://deqiv7y1s5d6y"]
 
 [ext_resource type="Texture2D" uid="uid://bo2smhy3rtw0r" path="res://Assets/Player/player.png" id="1"]
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="2"]
@@ -55,9 +55,25 @@ region = Rect2(32, 0, 32, 32)
 atlas = ExtResource("5_bipx0")
 region = Rect2(64, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ji0ad"]
+atlas = ExtResource("1")
+region = Rect2(96, 0, 32, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_kwqna"]
 atlas = ExtResource("1")
 region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wd8or"]
+atlas = ExtResource("1")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5pc2"]
+atlas = ExtResource("1")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_87p82"]
+atlas = ExtResource("1")
+region = Rect2(96, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_djcqm"]
 atlas = ExtResource("1")
@@ -183,10 +199,42 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ji0ad")
+}],
+"loop": true,
+"name": &"Down_Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_kwqna")
 }],
 "loop": true,
 "name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wd8or")
+}],
+"loop": true,
+"name": &"Left_Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m5pc2")
+}],
+"loop": true,
+"name": &"Right_Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_87p82")
+}],
+"loop": true,
+"name": &"Up_Idle",
 "speed": 5.0
 }, {
 "frames": [{
@@ -261,13 +309,16 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(18.1071, 12.7273)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_cp0a5"]
+radius = 21.0
+
 [node name="player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 3
 script = ExtResource("2")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_rfh70")
-animation = &"Idle"
+animation = &"Down_Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 2)
@@ -279,3 +330,18 @@ shape = SubResource("1")
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
+
+[node name="player_hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_hitbox"]
+shape = SubResource("CircleShape2D_cp0a5")
+
+[node name="attack_cooldown" type="Timer" parent="."]
+
+[node name="deal_attack_timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]
+[connection signal="body_exited" from="player_hitbox" to="." method="_on_player_hitbox_body_exited"]
+[connection signal="timeout" from="attack_cooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="deal_attack_timer" to="." method="_on_deal_attack_timer_timeout"]
