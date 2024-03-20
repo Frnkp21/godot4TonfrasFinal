@@ -29,5 +29,5 @@ layer_0/tile_data = PackedInt32Array(-65539, 0, 0, -65538, 1, 0, -65537, 9, 0, -
 
 [node name="player" parent="." instance=ExtResource("1")]
 position = Vector2(80, -29)
-move_speed = null
-attack_speed = null
+move_speed = 100.0
+attack_speed = 100.0

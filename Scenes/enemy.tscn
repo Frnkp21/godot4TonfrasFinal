@@ -1,3 +1,65 @@
-[gd_scene format=3 uid="uid://dppkaro83hemm"]
+[gd_scene load_steps=9 format=3 uid="uid://dppkaro83hemm"]
+
+[ext_resource type="Texture2D" uid="uid://umyy46fxu7qr" path="res://Assets/Enemies/mons1-sheet.png" id="1_e2umf"]
+[ext_resource type="Script" path="res://Scripts/Enemy.gd" id="2_pa0oh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r1gwn"]
+atlas = ExtResource("1_e2umf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gqn8w"]
+atlas = ExtResource("1_e2umf")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yej6j"]
+atlas = ExtResource("1_e2umf")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hbxmn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r1gwn")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqn8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yej6j")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8cf6b"]
+size = Vector2(27, 19)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jeall"]
+radius = 84.006
 
 [node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("2_pa0oh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["enemy"]]
+sprite_frames = SubResource("SpriteFrames_hbxmn")
+animation = &"Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -0.5)
+shape = SubResource("RectangleShape2D_8cf6b")
+
+[node name="detecting_area" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="detecting_area"]
+shape = SubResource("CircleShape2D_jeall")
+
+[connection signal="body_entered" from="detecting_area" to="." method="_on_detecting_area_body_entered"]
+[connection signal="body_exited" from="detecting_area" to="." method="_on_detecting_area_body_exited"]

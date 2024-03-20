@@ -261,14 +261,13 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(18.1071, 12.7273)
 
-[node name="player" type="CharacterBody2D"]
+[node name="player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 3
 script = ExtResource("2")
-move_speed = null
-attack_speed = null
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_rfh70")
-animation = &"Attack_Down"
+animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 2)

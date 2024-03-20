@@ -5,6 +5,7 @@ extends CharacterBody2D
 
 
 var is_attacking: bool = false  # Variable booleana que indica si se está atacando o no
+var attack_direction: Vector2 = Vector2.ZERO  # Dirección del ataque
 
 func _physics_process(delta: float) -> void:
 	var motion: Vector2 = Vector2.ZERO
@@ -43,7 +44,36 @@ func _physics_process(delta: float) -> void:
 		# Si no se está moviendo, reproducir la animación de Idle
 		$AnimatedSprite.play("Idle")
 
+# Si se está atacando, determinar la dirección del ataque
+	if is_attacking:
+		if abs(motion.x) > abs(motion.y):
+			if motion.x > 0:
+				attack_direction = Vector2.RIGHT
+			else:
+				attack_direction = Vector2.LEFT
+		else:
+			if motion.y > 0:
+				attack_direction = Vector2.DOWN
+			else:
+				attack_direction = Vector2.UP
 
+	# Si se soltó el botón de ataque, finalizar el ataque
+	if Input.is_action_just_released("attack"):
+		print("hola")
+		is_attacking = false
+
+	# Si se está atacando, reproducir la animación de ataque
+	if is_attacking:
+		$AnimatedSprite.play("Attack")
+
+	# Realizar el ataque después de un breve delay
+	if is_attacking and $AnimatedSprite.frame >= $AnimatedSprite.frame_range.end:
+		attack(attack_direction)
+		is_attacking = false
+
+func attack(attack_direction: Vector2) -> void:
+	# Aquí puedes implementar el comportamiento de ataque
+	pass
 func _on_Area2D_body_entered(body: Node) -> void:
 	# Aquí puedes manejar las colisiones con otros objetos
 	pass
