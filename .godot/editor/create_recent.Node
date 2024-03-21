@@ -1,9 +1,13 @@
+Button
+VBoxContainer
+Label
+Node2D
+Sprite2D
 CanvasLayer
 ProgressBar
 Timer
 CollisionShape2D
 Area2D
 RayCast2D
-Node2D
 AnimatedSprite2D
 CharacterBody2D

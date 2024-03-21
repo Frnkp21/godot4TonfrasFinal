@@ -1,4 +1,10 @@
+res://ui.gd
 res://tilemaps/default_env.tres
+<<<<<<< HEAD
+=======
+res://Scripts/menu.gd
+res://Scenes/menu.tscn
+>>>>>>> 8d4bf1697978f05320115ddd7c9d14b66aaeaeb0
 res://Scenes/BedRoom.tscn
 res://Scenes/Player.tscn
 res://Scenes/enemy.tscn
