@@ -1,35 +1,36 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://d1xecddcwtyti"]
 
-[ext_resource path="res://tilemaps/bedroomtile.tres" type="TileSet" id=1]
-[ext_resource path="res://tilemaps/BedRoomDeco.tres" type="TileSet" id=2]
-[ext_resource path="res://blackBack.jpg" type="Texture2D" id=3]
-[ext_resource path="res://Scenes/MoveScene.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=5]
+[ext_resource type="TileSet" path="res://tilemaps/bedroomtile.tres" id="1"]
+[ext_resource type="Script" path="res://Scripts/Hallway.gd" id="1_568w2"]
+[ext_resource type="TileSet" path="res://tilemaps/BedRoomDeco.tres" id="2"]
+[ext_resource type="Texture2D" uid="uid://366erd477kcq" path="res://blackBack.jpg" id="3"]
+[ext_resource type="PackedScene" uid="uid://4spxvr3fh1xr" path="res://Scenes/MoveScene.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://deqiv7y1s5d6y" path="res://Scenes/Player.tscn" id="5"]
 
-[node name="Parentsroom" type="Node2D"]
-position = Vector2( 126, 122 )
+[node name="Parentsroom" type="Node2D" node_paths=PackedStringArray("player")]
+position = Vector2(126, 122)
+script = ExtResource("1_568w2")
+player = NodePath("player")
 
 [node name="BlackBack" type="Sprite2D" parent="."]
-scale = Vector2( 3, 3 )
-texture = ExtResource( 3 )
+scale = Vector2(3, 3)
+texture = ExtResource("3")
 
 [node name="Background" type="TileMap" parent="."]
-tile_set = ExtResource( 1 )
-cell_size = Vector2( 32, 32 )
-format = 1
-tile_data = PackedInt32Array( -131069, 12, 0, -131068, 12, 0, -131067, 12, 0, -131066, 12, 0, -131065, 12, 0, -131064, 12, 0, -131063, 12, 0, -131062, 12, 0, -65533, 12, 0, -65532, 4, 0, -65531, 4, 0, -65530, 4, 0, -65529, 4, 0, -65528, 4, 0, -65527, 4, 0, -65526, 12, 0, 3, 12, 0, 4, 6, 0, 5, 6, 0, 6, 6, 0, 7, 6, 0, 8, 6, 0, 9, 6, 0, 10, 12, 0, 65539, 12, 0, 65540, 5, 0, 65541, 5, 0, 65542, 5, 0, 65543, 5, 0, 65544, 5, 0, 65545, 5, 0, 65546, 12, 0, 131075, 12, 0, 131076, 5, 0, 131077, 5, 0, 131078, 5, 0, 131079, 5, 0, 131080, 5, 0, 131081, 5, 0, 131082, 12, 0, 196611, 12, 0, 196612, 5, 0, 196613, 5, 0, 196614, 5, 0, 196615, 5, 0, 196616, 17, 0, 196617, 16, 0, 196618, 12, 0, 262147, 12, 0, 262148, 12, 0, 262149, 12, 0, 262150, 12, 0, 262151, 12, 0, 262152, 12, 0, 262153, 12, 0, 262154, 12, 0 )
+tile_set = ExtResource("1")
+format = 2
+layer_0/tile_data = PackedInt32Array(-131069, 10, 0, -131068, 10, 0, -131067, 10, 0, -131066, 10, 0, -131065, 10, 0, -131064, 10, 0, -131063, 10, 0, -131062, 10, 0, -65533, 10, 0, -65532, 2, 0, -65531, 2, 0, -65530, 2, 0, -65529, 2, 0, -65528, 2, 0, -65527, 2, 0, -65526, 10, 0, 3, 10, 0, 4, 4, 0, 5, 4, 0, 6, 4, 0, 7, 4, 0, 8, 4, 0, 9, 4, 0, 10, 10, 0, 65539, 10, 0, 65540, 3, 0, 65541, 3, 0, 65542, 3, 0, 65543, 3, 0, 65544, 3, 0, 65545, 3, 0, 65546, 10, 0, 131075, 10, 0, 131076, 3, 0, 131077, 3, 0, 131078, 3, 0, 131079, 3, 0, 131080, 3, 0, 131081, 3, 0, 131082, 10, 0, 196611, 10, 0, 196612, 3, 0, 196613, 3, 0, 196614, 3, 0, 196615, 3, 0, 196616, 15, 0, 196617, 14, 0, 196618, 10, 0, 262147, 10, 0, 262148, 10, 0, 262149, 10, 0, 262150, 10, 0, 262151, 10, 0, 262152, 10, 0, 262153, 10, 0, 262154, 10, 0)
 
 [node name="Deco" type="TileMap" parent="."]
-position = Vector2( 0, -17 )
-tile_set = ExtResource( 2 )
-cell_size = Vector2( 32, 32 )
-show_collision = true
-format = 1
-tile_data = PackedInt32Array( 8, 0, 0, 9, 1, 0, 65540, 15, 0, 65541, 11, 0, 65542, 12, 0, 65543, 15, 0, 65544, 2, 0, 65545, 3, 0, 131077, 13, 0, 131078, 14, 0 )
+position = Vector2(0, -17)
+tile_set = ExtResource("2")
+format = 2
+layer_0/tile_data = PackedInt32Array(8, 0, 0, 9, 1, 0, 65540, 15, 0, 65541, 11, 0, 65542, 12, 0, 65543, 15, 0, 65544, 2, 0, 65545, 3, 0, 131077, 13, 0, 131078, 14, 0)
 
-[node name="player" parent="." instance=ExtResource( 5 )]
-position = Vector2( 287, 110 )
+[node name="player" parent="." instance=ExtResource("5")]
+position = Vector2(242, 87)
 
-[node name="MoveScene2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 287, 124 )
-escena = "Hallway"
+[node name="MoveScene2" parent="." instance=ExtResource("4")]
+position = Vector2(287, 124)
+target_scene = "Hallway"
+target_position = Vector2(304, 88)
