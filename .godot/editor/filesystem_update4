@@ -1,13 +1,5 @@
-res://ui.gd
 res://tilemaps/default_env.tres
-res://Scripts/menu.gd
 res://Scenes/menu.tscn
-res://Scenes/BedRoom.tscn
-res://Scenes/Player.tscn
-res://Scenes/enemy.tscn
-res://Scenes/Street.tscn
-res://Scenes/Livingroom.tscn
-res://Scripts/Player.gd
-res://Scripts/global.gd
-res://Scripts/Mother.gd
-res://Scenes/mother.tscn
+res://Scenes/MoveScene.tscn
+res://Scenes/Parentsroom.tscn
+res://Scenes/Hallway.tscn
