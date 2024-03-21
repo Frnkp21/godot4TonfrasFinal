@@ -19,7 +19,10 @@ config/icon="res://icon.png"
 
 global="*res://Scripts/global.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+<<<<<<< HEAD
 Coordenadas="*res://Scripts/coordenadas.gd"
+=======
+>>>>>>> b0ab77a21315f7053075c5b360bfae58fd01d508
 
 [display]
 

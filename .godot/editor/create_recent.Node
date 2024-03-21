@@ -1,3 +1,7 @@
+CollisionShape2D
+AnimatedSprite2D
+CharacterBody2D
+Area2D
 Button
 VBoxContainer
 Label
@@ -6,8 +10,4 @@ Sprite2D
 CanvasLayer
 ProgressBar
 Timer
-CollisionShape2D
-Area2D
 RayCast2D
-AnimatedSprite2D
-CharacterBody2D
