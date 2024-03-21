@@ -1,25 +1,6 @@
 res://tilemaps/default_env.tres
-<<<<<<< HEAD
 res://Scenes/menu.tscn
 res://Scenes/MoveScene.tscn
 res://Scenes/Parentsroom.tscn
 res://Scenes/Hallway.tscn
-<<<<<<< HEAD
 res://Scenes/Livingroom.tscn
-=======
->>>>>>> b0ab77a21315f7053075c5b360bfae58fd01d508
-=======
-res://Scenes/BedRoom.tscn
-res://Scenes/Player.tscn
-res://Scenes/enemy.tscn
-res://Scenes/Street.tscn
-res://Scenes/menu.tscn
-res://Scenes/Livingroom.tscn
-res://Scenes/Hallway.tscn
-res://Scripts/coordenadas.gd
-res://Scenes/Hallway.gd
-res://Scripts/MoveScene.gd
-res://Scenes/Bathroom.tscn
-res://Scenes/Parentsroom.tscn
-res://Scenes/MoveScene.tscn
->>>>>>> bb662dc4afd36db30e421b9f9a1a6975309dcf73
