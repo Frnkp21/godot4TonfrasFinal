@@ -6,20 +6,8 @@ res://Scenes/BedRoom.tscn
 res://Scenes/Player.tscn
 res://Scenes/enemy.tscn
 res://Scenes/Street.tscn
-<<<<<<< HEAD
-res://Scenes/menu.tscn
-res://Scenes/Livingroom.tscn
-res://Scenes/Hallway.tscn
-res://Scripts/coordenadas.gd
-res://Scenes/Hallway.gd
-res://Scripts/MoveScene.gd
-res://Scenes/Bathroom.tscn
-res://Scenes/Parentsroom.tscn
-res://Scenes/MoveScene.tscn
-=======
 res://Scenes/Livingroom.tscn
 res://Scripts/Player.gd
 res://Scripts/global.gd
 res://Scripts/Mother.gd
 res://Scenes/mother.tscn
->>>>>>> bb9bbc48daa0922291463401c5dd2d7b9fcd3260
