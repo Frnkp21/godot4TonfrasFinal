@@ -1,0 +1,146 @@
+[gd_resource type="Resource" script_class="DialogueResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_resource.gd" id="1_81sw6"]
+
+[resource]
+script = ExtResource("1_81sw6")
+using_states = PackedStringArray()
+titles = {
+"start": "3"
+}
+character_names = PackedStringArray("Mother")
+first_title = "3"
+lines = {
+"1": {
+"id": "1",
+"next_id": "3",
+"text": "start",
+"type": "title"
+},
+"10": {
+"character": "",
+"character_replacements": Array[Dictionary]([]),
+"id": "10",
+"next_id": "end",
+"next_id_after": "12",
+"notes": "",
+"tags": PackedStringArray(),
+"text": "adios puta dejame en paz",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "adios puta dejame en paz",
+"type": "response"
+},
+"12": {
+"id": "12",
+"is_snippet": false,
+"next_id": "end",
+"type": "goto"
+},
+"3": {
+"character": "Mother",
+"character_replacements": Array[Dictionary]([]),
+"id": "3",
+"next_id": "4",
+"notes": "",
+"tags": PackedStringArray(),
+"text": "[[Hi|Hello|Buenas]].. how are you?",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "[[Hi|Hello|Buenas]].. how are you?",
+"type": "dialogue"
+},
+"4": {
+"character": "",
+"character_replacements": Array[Dictionary]([]),
+"id": "4",
+"next_id": "5",
+"next_id_after": "12",
+"notes": "",
+"responses": PackedStringArray("4", "10"),
+"tags": PackedStringArray(),
+"text": "hola buenas tardes estoy perfe",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "hola buenas tardes estoy perfe",
+"type": "response"
+},
+"5": {
+"character": "Mother",
+"character_replacements": Array[Dictionary]([]),
+"id": "5",
+"next_id": "6",
+"notes": "",
+"parent_id": "4",
+"tags": PackedStringArray(),
+"text": "te piras pa la calle o que",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "te piras pa la calle o que",
+"type": "dialogue"
+},
+"6": {
+"character": "",
+"character_replacements": Array[Dictionary]([]),
+"id": "6",
+"next_id": "7",
+"next_id_after": "12",
+"notes": "",
+"parent_id": "4",
+"responses": PackedStringArray("6", "8"),
+"tags": PackedStringArray(),
+"text": "pues si",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "pues si",
+"type": "response"
+},
+"7": {
+"character": "Mother",
+"character_replacements": Array[Dictionary]([]),
+"id": "7",
+"next_id": "12",
+"notes": "",
+"parent_id": "6",
+"tags": PackedStringArray(),
+"text": "pues venga a tomar por culo niño rata",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "pues venga a tomar por culo niño rata",
+"type": "dialogue"
+},
+"8": {
+"character": "",
+"character_replacements": Array[Dictionary]([]),
+"id": "8",
+"next_id": "9",
+"next_id_after": "12",
+"notes": "",
+"parent_id": "4",
+"tags": PackedStringArray(),
+"text": "a ti que te importa",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "a ti que te importa",
+"type": "response"
+},
+"9": {
+"character": "Mother",
+"character_replacements": Array[Dictionary]([]),
+"id": "9",
+"next_id": "12",
+"notes": "",
+"parent_id": "8",
+"tags": PackedStringArray(),
+"text": "tus muertos ven aqui.",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "tus muertos ven aqui.",
+"type": "dialogue"
+}
+}
+raw_text = "~ start
+
+Mother: [[Hi|Hello|Buenas]].. how are you?
+- hola buenas tardes estoy perfe
+	Mother: te piras pa la calle o que
+	- pues si 
+		Mother: pues venga a tomar por culo niño rata
+	- a ti que te importa
+		Mother: tus muertos ven aqui.
+- adios puta dejame en paz => END
+
+=> END"
+metadata/dialogue_manager_version = "2.36.0"

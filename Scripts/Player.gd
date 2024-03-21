@@ -3,7 +3,7 @@ extends CharacterBody2D
 const speed = 100
 var current_dir ="none"
 
-
+var mother_in_range = false
 var enemy_inattack_range = false
 var enemy_attack_cooldown = true
 var health = 100
@@ -19,6 +19,11 @@ func _physics_process(delta):
 	enemy_attack()
 	attack()
 	update_health()
+	
+	if mother_in_range == true:
+		if Input.is_action_just_pressed("Interact"):
+			DialogueManager.show_example_dialogue_balloon(load("res://main.dialogue"))
+			return
 	
 	if health <= 0:
 		player_alive=false #agregar un menu de respawn o algo
@@ -156,3 +161,13 @@ func _on_regin_timer_timeout():
 			health = 100
 	if health <= 0:
 		health = 0
+
+
+func _on_detection_area_chat_body_entered(body):
+	if body.has_method("mother"):
+		mother_in_range = true
+
+
+func _on_detection_area_chat_body_exited(body):
+	if body.has_method("mother"):
+		mother_in_range = false
