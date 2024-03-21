@@ -1,4 +1,7 @@
+res://ui.gd
 res://tilemaps/default_env.tres
+res://Scripts/menu.gd
+res://Scenes/menu.tscn
 res://Scenes/BedRoom.tscn
 res://Scenes/Player.tscn
 res://Scenes/enemy.tscn
