@@ -1,6 +1,7 @@
-[gd_scene load_steps=81 format=3 uid="uid://deqmiiupipoiw"]
+[gd_scene load_steps=83 format=3 uid="uid://deqmiiupipoiw"]
 
 [ext_resource type="Texture2D" uid="uid://366erd477kcq" path="res://blackBack.jpg" id="1"]
+[ext_resource type="Script" path="res://Scripts/Hallway.gd" id="1_nkk84"]
 [ext_resource type="Texture2D" uid="uid://bkdwlvhhck0p5" path="res://Assets/Map/Exterior/DecoExterior/arbusto.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://x5guiv4wnish" path="res://Assets/Map/Exterior/DecoExterior/arbusto2.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://cf07rkjvhm68u" path="res://Assets/Map/Exterior/DecoExterior/floresAmarillas.png" id="4"]
@@ -28,6 +29,7 @@
 [ext_resource type="Texture2D" uid="uid://dwx5itcsovp5x" path="res://Assets/Map/Exterior/DecoExterior/arbolllll.png" id="27"]
 [ext_resource type="Texture2D" uid="uid://tbyv0foyoqpf" path="res://Assets/Map/Exterior/DecoExterior/arbolllll2.png" id="28"]
 [ext_resource type="PackedScene" uid="uid://dppkaro83hemm" path="res://Scenes/enemy.tscn" id="28_6hcq7"]
+[ext_resource type="PackedScene" uid="uid://4spxvr3fh1xr" path="res://Scenes/MoveScene.tscn" id="30_u7ju5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lc4cc"]
 texture = ExtResource("9")
@@ -2012,7 +2014,9 @@ sources/22 = SubResource("TileSetAtlasSource_obtqn")
 sources/23 = SubResource("TileSetAtlasSource_n3fer")
 sources/24 = SubResource("TileSetAtlasSource_8sxrh")
 
-[node name="Street" type="Node2D"]
+[node name="Street" type="Node2D" node_paths=PackedStringArray("player")]
+script = ExtResource("1_nkk84")
+player = NodePath("player")
 
 [node name="Black" type="Sprite2D" parent="."]
 scale = Vector2(3, 3)
@@ -2043,7 +2047,7 @@ position = Vector2(598, 506)
 position = Vector2(700, 397)
 
 [node name="player" parent="." instance=ExtResource("15")]
-position = Vector2(302, 312)
+position = Vector2(597, 238)
 
 [node name="Fuente" type="TileMap" parent="."]
 visible = false
@@ -2057,3 +2061,8 @@ visible = false
 position = Vector2(-34, 30)
 tile_set = SubResource("4")
 format = 2
+
+[node name="MoveScene" parent="." instance=ExtResource("30_u7ju5")]
+position = Vector2(610, 194)
+target_scene = "Livingroom"
+target_position = Vector2(368, 213)

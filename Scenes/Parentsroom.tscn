@@ -1,13 +1,27 @@
+<<<<<<< HEAD
 [gd_scene load_steps=6 format=3 uid="uid://d1xecddcwtyti"]
 
 [ext_resource type="TileSet" path="res://tilemaps/bedroomtile.tres" id="1"]
+=======
+[gd_scene load_steps=7 format=3 uid="uid://d1xecddcwtyti"]
+
+[ext_resource type="TileSet" path="res://tilemaps/bedroomtile.tres" id="1"]
+[ext_resource type="Script" path="res://Scripts/Hallway.gd" id="1_568w2"]
+>>>>>>> bb662dc4afd36db30e421b9f9a1a6975309dcf73
 [ext_resource type="TileSet" path="res://tilemaps/BedRoomDeco.tres" id="2"]
 [ext_resource type="Texture2D" uid="uid://366erd477kcq" path="res://blackBack.jpg" id="3"]
 [ext_resource type="PackedScene" uid="uid://4spxvr3fh1xr" path="res://Scenes/MoveScene.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://deqiv7y1s5d6y" path="res://Scenes/Player.tscn" id="5"]
 
+<<<<<<< HEAD
 [node name="Parentsroom" type="Node2D"]
 position = Vector2(126, 122)
+=======
+[node name="Parentsroom" type="Node2D" node_paths=PackedStringArray("player")]
+position = Vector2(126, 122)
+script = ExtResource("1_568w2")
+player = NodePath("player")
+>>>>>>> bb662dc4afd36db30e421b9f9a1a6975309dcf73
 
 [node name="BlackBack" type="Sprite2D" parent="."]
 scale = Vector2(3, 3)
@@ -25,8 +39,17 @@ format = 2
 layer_0/tile_data = PackedInt32Array(8, 0, 0, 9, 1, 0, 65540, 15, 0, 65541, 11, 0, 65542, 12, 0, 65543, 15, 0, 65544, 2, 0, 65545, 3, 0, 131077, 13, 0, 131078, 14, 0)
 
 [node name="player" parent="." instance=ExtResource("5")]
+<<<<<<< HEAD
 position = Vector2(287, 110)
 
 [node name="MoveScene2" parent="." instance=ExtResource("4")]
 position = Vector2(287, 124)
 escena = "Hallway"
+=======
+position = Vector2(242, 87)
+
+[node name="MoveScene2" parent="." instance=ExtResource("4")]
+position = Vector2(287, 124)
+target_scene = "Hallway"
+target_position = Vector2(304, 88)
+>>>>>>> bb662dc4afd36db30e421b9f9a1a6975309dcf73

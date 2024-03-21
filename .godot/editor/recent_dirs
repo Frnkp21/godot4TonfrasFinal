@@ -1,6 +1,9 @@
-res://Scenes
 res://Scripts
+<<<<<<< HEAD
 res://Assets/Npc
+=======
+res://Scenes
+>>>>>>> bb662dc4afd36db30e421b9f9a1a6975309dcf73
 res://Assets/Enemies
 res://
 res://Assets/Player

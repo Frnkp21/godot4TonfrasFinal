@@ -18,11 +18,15 @@ config/icon="res://icon.png"
 [autoload]
 
 global="*res://Scripts/global.gd"
+<<<<<<< HEAD
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 <<<<<<< HEAD
 Coordenadas="*res://Scripts/coordenadas.gd"
 =======
 >>>>>>> b0ab77a21315f7053075c5b360bfae58fd01d508
+=======
+Coordenadas="*res://Scripts/coordenadas.gd"
+>>>>>>> bb662dc4afd36db30e421b9f9a1a6975309dcf73
 
 [display]
 
