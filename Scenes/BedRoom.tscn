@@ -1,12 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://cimkrlrls0ywv"]
+[gd_scene load_steps=7 format=3 uid="uid://cimkrlrls0ywv"]
 
 [ext_resource type="PackedScene" uid="uid://deqiv7y1s5d6y" path="res://Scenes/Player.tscn" id="1"]
+[ext_resource type="Script" path="res://Scripts/Hallway.gd" id="1_ca6ew"]
 [ext_resource type="TileSet" path="res://tilemaps/bedroomtile.tres" id="2"]
 [ext_resource type="TileSet" path="res://tilemaps/BedRoomDeco.tres" id="3"]
 [ext_resource type="Texture2D" uid="uid://366erd477kcq" path="res://blackBack.jpg" id="4"]
+[ext_resource type="PackedScene" uid="uid://4spxvr3fh1xr" path="res://Scenes/MoveScene.tscn" id="5_v2kdv"]
 
-[node name="BedRoom" type="Node2D"]
+[node name="BedRoom" type="Node2D" node_paths=PackedStringArray("player")]
 position = Vector2(319, 180)
+script = ExtResource("1_ca6ew")
+player = NodePath("player")
 
 [node name="Black" type="Sprite2D" parent="."]
 position = Vector2(12, 19)
@@ -28,4 +32,9 @@ format = 2
 layer_0/tile_data = PackedInt32Array(-65539, 0, 0, -65538, 1, 0, -65537, 9, 0, -131072, 10, 0, -3, 2, 0, -2, 3, 0, -1, 8, 0, -65536, 7, 0, 131069, 4, 0, 131070, 5, 0)
 
 [node name="player" parent="." instance=ExtResource("1")]
-position = Vector2(80, -29)
+position = Vector2(55, -1)
+
+[node name="MoveScene" parent="." instance=ExtResource("5_v2kdv")]
+position = Vector2(80, -46)
+target_scene = "Hallway"
+target_position = Vector2(432, 148)
